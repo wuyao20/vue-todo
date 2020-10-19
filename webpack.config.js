@@ -19,6 +19,10 @@ const config = {
         loader: 'vue-loader'
       },
       {
+        test: /.jsx$/,
+        loader: 'babel-loader'
+      },
+      {
         test: /.css$/,
         use: [
           'style-loader',
@@ -30,7 +34,12 @@ const config = {
         use: [
           'style-loader',
           'css-loader',
-          'postcss-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true
+            }
+          },
           'stylus-loader'
         ]
       },
@@ -51,20 +60,23 @@ const config = {
   plugins: [
     new CleanWebpackPlugin(),
     new VueLoaderPlugin(),
-    new HTMLPlugin()
-    // new webpack.DefinePlugin({
-    //   'process.env': {
-    //     NODE_ENV: isDev ? '"development"' : '"production"'
-    //   }
-    // })
+    new HTMLPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: isDev ? '"development"' : '"production"'
+      }
+    })
   ]
 }
 
 if(isDev) {
+  config.devtool = '#cheap-module-eval-source-map'
   config.devServer = {
     contentBase: path.join(__dirname, "dist"),
-    port: 9000
+    port: 9000,
+    hot: true
   }
+  config.plugins.push(new webpack.HotModuleReplacementPlugin())
 }
 
 module.exports = config
