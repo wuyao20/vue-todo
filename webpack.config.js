@@ -1,6 +1,12 @@
 const path = require('path')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-module.exports = {
+const HTMLPlugin = require('html-webpack-plugin')
+const webpack = require('webpack')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+
+const isDev=process.env.NODE_ENV === 'development'
+
+const config = {
   entry: path.join(__dirname, 'src/index.js'),
   output: {
     filename: 'bundle.js',
@@ -43,6 +49,22 @@ module.exports = {
     ]
   },
   plugins: [
-    new VueLoaderPlugin()
+    new CleanWebpackPlugin(),
+    new VueLoaderPlugin(),
+    new HTMLPlugin()
+    // new webpack.DefinePlugin({
+    //   'process.env': {
+    //     NODE_ENV: isDev ? '"development"' : '"production"'
+    //   }
+    // })
   ]
 }
+
+if(isDev) {
+  config.devServer = {
+    contentBase: path.join(__dirname, "dist"),
+    port: 9000
+  }
+}
+
+module.exports = config
