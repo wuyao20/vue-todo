@@ -1,6 +1,6 @@
 <template>
-  <div id='text'>
-    {{text}}
+  <div id='app'>
+    
   </div>
 </template>
 
@@ -15,7 +15,5 @@
 </script>
 
 <style scoped>
- #text{
-   color:red;
- }
+ 
 </style>
