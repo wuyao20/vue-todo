@@ -20,6 +20,15 @@ module.exports = {
         ]
       },
       {
+        test: /.styl$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'postcss-loader',
+          'stylus-loader'
+        ]
+      },
+      {
         test: /.(gif|jpg|jpeg|png|svg)$/,
         use: [
           {
