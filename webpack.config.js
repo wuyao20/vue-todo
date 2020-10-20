@@ -15,22 +15,22 @@ const config = {
   module: {
     rules: [
       {
-        test: /.vue$/,
+        test: /\.vue$/,
         loader: 'vue-loader'
       },
       {
-        test: /.jsx$/,
+        test: /\.jsx$/,
         loader: 'babel-loader'
       },
       {
-        test: /.css$/,
+        test: /\.css$/,
         use: [
           'style-loader',
           'css-loader'
         ]
       },
       {
-        test: /.styl$/,
+        test: /\.styl/,
         use: [
           'style-loader',
           'css-loader',
@@ -44,7 +44,7 @@ const config = {
         ]
       },
       {
-        test: /.(gif|jpg|jpeg|png|svg)$/,
+        test: /\.(gif|jpg|jpeg|png|svg)$/,
         use: [
           {
             loader: 'url-loader',
