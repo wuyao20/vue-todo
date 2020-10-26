@@ -23,13 +23,6 @@ const config = {
         loader: 'babel-loader'
       },
       {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
-      },
-      {
         test: /\.(gif|jpg|jpeg|png|svg)$/,
         use: [
           {
