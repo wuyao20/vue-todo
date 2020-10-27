@@ -16,6 +16,7 @@
 
 <script>
   export default {
+    name: 'Tabs',
     props: {
       filter: {
         type: String,

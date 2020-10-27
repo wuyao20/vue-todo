@@ -1,5 +1,6 @@
 <template>
   <section class="real-app">
+    salted fish
     <input
       type="text"
       class="add-input"
@@ -23,6 +24,7 @@ import Tabs from './tabs.vue'
 
 let id = 0
 export default {
+  name: 'Todo',
   data() {
     return {
       todos: [],

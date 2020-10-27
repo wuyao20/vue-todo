@@ -12,6 +12,7 @@
 
 <script>
   export default {
+    name: 'Item',
     props: {
       todo: {
         type: Object,

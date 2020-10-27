@@ -72,6 +72,9 @@ if(isDev) {
   }
   config.plugins.push(new webpack.HotModuleReplacementPlugin())
 } else {
+  config.entry = {
+    app: path.join(__dirname, 'src/index.js'),
+  }
   config.output.filename = 'bundle.[chunkhash:8].js'
   config.module.rules.push({
     test: /\.styl/,
@@ -88,6 +91,29 @@ if(isDev) {
     ]
   })
   config.plugins.push(new MiniCssExtractPlugin())
+  config.optimization = {
+    splitChunks: {
+      chunks: "all",
+      minSize: 300,
+      minChunks: 1,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      automaticNameDelimiter: '~',
+      name: true,
+      cacheGroups: {
+          vendors: {
+              test: /[\\/]node_modules[\\/]/,
+              priority: -10,
+              filename: '[name].chunk.js'
+          },
+      default: {
+              minChunks: 2,
+              priority: -20,
+              reuseExistingChunk: true
+          }
+      }
+    }
+  }
 }
 
 module.exports = config
